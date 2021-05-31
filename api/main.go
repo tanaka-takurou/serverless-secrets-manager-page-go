@@ -82,6 +82,9 @@ func getSecret(ctx context.Context)(string, error) {
 		log.Print(err)
 		return "", err
 	}
+	secretStringJson := make(map[string]string)
+	json.Unmarshal([]byte(aws.ToString(result.SecretString)), &secretStringJson)
+	log.Printf("%v", secretStringJson)
 	return string(resultJson), nil
 }
 
