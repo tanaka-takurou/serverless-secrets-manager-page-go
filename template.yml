@@ -21,11 +21,13 @@ Resources:
   FrontPageFunction:
     Type: AWS::Serverless::Function
     Properties:
+      Architectures:
+      - arm64
       FunctionName: ServerlessSecretsManagerPageFrontFunction
       CodeUri: bin/
-      Handler: main
+      Handler: bootstrap
       MemorySize: 256
-      Runtime: go1.x
+      Runtime: provided.al2
       Description: 'SecretsManager Front Function'
       Environment:
         Variables:
@@ -42,11 +44,13 @@ Resources:
   MainFunction:
     Type: AWS::Serverless::Function
     Properties:
+      Architectures:
+      - arm64
       FunctionName: ServerlessSecretsManagerPageMainFunction
       CodeUri: api/bin/
-      Handler: main
+      Handler: bootstrap
       MemorySize: 256
-      Runtime: go1.x
+      Runtime: provided.al2
       Description: 'SecretsManager API Function'
       Policies:
       - Statement:
